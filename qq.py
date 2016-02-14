@@ -65,8 +65,8 @@ if __name__=="__main__":
   except:
    continue
   for i in pr:
-   #try:
-   anapoll(i)
-   #except Exception,e:
-   # print e
+   try:
+    anapoll(i)
+   except Exception,e:
+    print e
 
