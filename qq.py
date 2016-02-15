@@ -38,22 +38,23 @@ def send(s,t):
 #### analize poll
 
 def ana(s):
- t=True
  if s=="tool" or s=="tools":
   return "http://trumpet-tools.cn.labxnow.org/"
  if s[0]=="#":
   s=subprocess.check_output(["curl http://trumpet-tools.cn.labxnow.org/python?run="+urllib.quote(s[1:])+" 2>/dev/null"],shell=True)
  if s[0]=="=":
   s=subprocess.check_output(["curl http://trumpet-mathkernel.cn.labxnow.org/?run="+urllib.quote(s[1:])+" 2>/dev/null"],shell=True)
- return s,t
+ if s[0]=="?":
+  s="http://cn.bing.com/search?q="+urllib.quote(s[1:])
+ return s
 
 def anapoll(i):
  if i["poll_type"]=="discu_message":
   if i["value"]["from_uin"]==711963687:
    s=i["value"]["content"][1].encode('utf8')
    s=s.replace('&lt;','<').replace('&gt;','>')
-   s,t=ana(s)
-   send(s,t)
+   s=ana(s)
+   send(s,True)
  return 0
 
 #### main
@@ -68,8 +69,8 @@ if __name__=="__main__":
   except:
    continue
   for i in pr:
-   try:
-    anapoll(i)
-   except Exception,e:
-    print e
+   #try:
+   anapoll(i)
+   #except Exception,e:
+   # print e
 
