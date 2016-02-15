@@ -4,7 +4,7 @@ import json
 import subprocess
 import urllib
 import threading
-import data
+import datad
 
 #### init
 
@@ -43,9 +43,9 @@ def ana(s):
  if s=="tool" or s=="tools":
   return "http://trumpet-tools.cn.labxnow.org/"
  if s[0]=="#":
-  s=subprocess.check_output([data.py+urllib.quote(s[1:])+" 2>/dev/null"],shell=True)
+  s=subprocess.check_output([datad.py+urllib.quote(s[1:])+" 2>/dev/null"],shell=True)
  if s[0]=="=":
-  s=subprocess.check_output([data.math+urllib.quote(s[1:])+" 2>/dev/null"],shell=True)
+  s=subprocess.check_output([datad.math+urllib.quote(s[1:])+" 2>/dev/null"],shell=True)
  if s[0]=="?":
   s="http://cn.bing.com/search?q="+urllib.quote(s[1:])
  return s
