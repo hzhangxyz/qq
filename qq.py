@@ -3,6 +3,7 @@ import os
 import json
 import subprocess
 import urllib
+import threading
 
 #### init
 
@@ -69,8 +70,8 @@ if __name__=="__main__":
   except:
    continue
   for i in pr:
-   #try:
-   anapoll(i)
-   #except Exception,e:
-   # print e
+   try:
+    threading.Thread(target=anapoll,args=(i,)).start()
+   except Exception,e:
+    print e
 
