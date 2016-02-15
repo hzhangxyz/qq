@@ -13,13 +13,13 @@ def python():
                 except:
                         pass
                 name="n%s"%str(hash(src))
-                inp=open('/tmp/tOoLs/%s.py'%name,'w')
+                inp=open('/tmp/tOoLs/%s.m'%name,'w')
                 inp.write(src)
                 inp.close()
                 os.system("rm /tmp/tOoLs/%s.out"%name)
                 os.system("touch /tmp/tOoLs/%s.out"%name)
                 try:
-                        os.system("MathKernel /tmp/tOoLs/%s.py </dev/null 1>>/tmp/tOoLs/%s.out 2>>/tmp/tOoLs/%s.out"%(name,name,name))
+                        os.system("MathKernel -script /tmp/tOoLs/%s.m </dev/null 1>>/tmp/tOoLs/%s.out 2>>/tmp/tOoLs/%s.out"%(name,name,name))
                 except Exception,e:
                         return e.__repr__()
                 file=open("/tmp/tOoLs/%s.out"%name,"r")
